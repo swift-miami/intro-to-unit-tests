@@ -8,11 +8,6 @@
 
 import UIKit
 
-struct Email {
-    let subject: String
-    var isRead: Bool = false
-}
-
 class TableViewController: UITableViewController {
     
     var emails = [Email(subject: "Hello", isRead: false),

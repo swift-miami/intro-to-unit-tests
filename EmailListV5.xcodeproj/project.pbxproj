@@ -12,9 +12,11 @@
 		CE7A20982253FC5000F6DCB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7A20962253FC5000F6DCB4 /* Main.storyboard */; };
 		CE7A209A2253FC5800F6DCB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE7A20992253FC5800F6DCB4 /* Assets.xcassets */; };
 		CE7A209D2253FC5800F6DCB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7A209B2253FC5800F6DCB4 /* LaunchScreen.storyboard */; };
-		CE7A20A82253FC5800F6DCB4 /* EmailListV5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A20A72253FC5800F6DCB4 /* EmailListV5Tests.swift */; };
+		CE7A20A82253FC5800F6DCB4 /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A20A72253FC5800F6DCB4 /* ViewModelTests.swift */; };
 		CE7A20B42253FE8600F6DCB4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7A20B22253FE8600F6DCB4 /* TableViewCell.swift */; };
 		CE7A20B52253FE8600F6DCB4 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE7A20B32253FE8600F6DCB4 /* TableViewCell.xib */; };
+		D30874742256830900C821F7 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30874732256830900C821F7 /* Email.swift */; };
+		D30874762256833700C821F7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30874752256833700C821F7 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +38,12 @@
 		CE7A209C2253FC5800F6DCB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE7A209E2253FC5800F6DCB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7A20A32253FC5800F6DCB4 /* EmailListV5Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmailListV5Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE7A20A72253FC5800F6DCB4 /* EmailListV5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailListV5Tests.swift; sourceTree = "<group>"; };
+		CE7A20A72253FC5800F6DCB4 /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		CE7A20A92253FC5800F6DCB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE7A20B22253FE8600F6DCB4 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CE7A20B32253FE8600F6DCB4 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		D30874732256830900C821F7 /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
+		D30874752256833700C821F7 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 				CE7A20B32253FE8600F6DCB4 /* TableViewCell.xib */,
 				CE7A209B2253FC5800F6DCB4 /* LaunchScreen.storyboard */,
 				CE7A209E2253FC5800F6DCB4 /* Info.plist */,
+				D30874732256830900C821F7 /* Email.swift */,
+				D30874752256833700C821F7 /* ViewModel.swift */,
 			);
 			path = EmailListV5;
 			sourceTree = "<group>";
@@ -96,7 +102,7 @@
 		CE7A20A62253FC5800F6DCB4 /* EmailListV5Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CE7A20A72253FC5800F6DCB4 /* EmailListV5Tests.swift */,
+				CE7A20A72253FC5800F6DCB4 /* ViewModelTests.swift */,
 				CE7A20A92253FC5800F6DCB4 /* Info.plist */,
 			);
 			path = EmailListV5Tests;
@@ -204,8 +210,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D30874762256833700C821F7 /* ViewModel.swift in Sources */,
 				CE7A20B42253FE8600F6DCB4 /* TableViewCell.swift in Sources */,
 				CE7A20952253FC5000F6DCB4 /* ViewController.swift in Sources */,
+				D30874742256830900C821F7 /* Email.swift in Sources */,
 				CE7A20932253FC5000F6DCB4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,7 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE7A20A82253FC5800F6DCB4 /* EmailListV5Tests.swift in Sources */,
+				CE7A20A82253FC5800F6DCB4 /* ViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
