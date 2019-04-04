@@ -10,20 +10,19 @@ import UIKit
 
 struct Email {
     let subject: String
-    let body: String
     var isRead: Bool = false
 }
 
 class TableViewController: UITableViewController {
     
-    var emails = [Email(subject: "Helen", body: "", isRead: false),
-                  Email(subject: "Hello", body: "", isRead: false),
-                  Email(subject: "Hello0", body: "", isRead: false),
-                  Email(subject: "Hello1", body: "", isRead: false),
-                  Email(subject: "Hello2", body: "", isRead: false),
-                  Email(subject: "Hello3", body: "", isRead: false),
-                  Email(subject: "Hello4", body: "", isRead: false),
-                  Email(subject: "Hello, Asshole", body: "", isRead: false)]
+    var emails = [Email(subject: "Hello", isRead: false),
+                  Email(subject: "URGENT: Please advise on how to proceed", isRead: false),
+                  Email(subject: "Dwight from the office: Following up", isRead: false),
+                  Email(subject: "CONGRATULATIONS, YOU'VE WON!", isRead: false),
+                  Email(subject: "Gutiérrez: Following up", isRead: false),
+                  Email(subject: "MTV Presents: Top 10 worst Rappers of 2019 (So Far)", isRead: false),
+                  Email(subject: "Groupon", isRead: false),
+                  Email(subject: "Hello, Friend", isRead: false)]
 
     var filteredEmails = [Email]()
     
@@ -71,15 +70,16 @@ class TableViewController: UITableViewController {
             cell.label.font = UIFont.italicSystemFont(ofSize: 12)
         }
         cell.label.text = email.subject
-        cell.textField.text = email.body
-    
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
         emails[indexPath.row].isRead.toggle()
-        
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
     }
 }
 

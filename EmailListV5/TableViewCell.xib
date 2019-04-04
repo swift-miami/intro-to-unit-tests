@@ -20,20 +20,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="tMj-wu-nGm">
-                        <rect key="frame" x="16" y="11" width="242" height="136"/>
+                        <rect key="frame" x="16" y="55" width="242" height="58"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMR-0r-fhu">
-                                <rect key="frame" x="0.0" y="0.0" width="242" height="20.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="242" height="58"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNo-ce-ia6">
-                                <rect key="frame" x="0.0" y="39.5" width="242" height="96.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                     </stackView>
                 </subviews>
@@ -47,7 +41,6 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="label" destination="CMR-0r-fhu" id="6tX-Ei-aU0"/>
-                <outlet property="textField" destination="sNo-ce-ia6" id="LoY-YF-cwB"/>
             </connections>
             <point key="canvasLocation" x="365.21739130434787" y="136.60714285714286"/>
         </tableViewCell>
