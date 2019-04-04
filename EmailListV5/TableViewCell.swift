@@ -18,6 +18,7 @@ class TableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        label.font = UIFont.boldSystemFont(ofSize: 12)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

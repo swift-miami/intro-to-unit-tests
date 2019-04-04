@@ -63,7 +63,6 @@
 		CE7A20862253FC5000F6DCB4 = {
 			isa = PBXGroup;
 			children = (
-				CE7A20942253FC5000F6DCB4 /* ViewController.swift */,
 				CE7A20912253FC5000F6DCB4 /* EmailListV5 */,
 				CE7A20A62253FC5800F6DCB4 /* EmailListV5Tests */,
 				CE7A20902253FC5000F6DCB4 /* Products */,
@@ -82,6 +81,7 @@
 		CE7A20912253FC5000F6DCB4 /* EmailListV5 */ = {
 			isa = PBXGroup;
 			children = (
+				CE7A20942253FC5000F6DCB4 /* ViewController.swift */,
 				CE7A20922253FC5000F6DCB4 /* AppDelegate.swift */,
 				CE7A20962253FC5000F6DCB4 /* Main.storyboard */,
 				CE7A20992253FC5800F6DCB4 /* Assets.xcassets */,

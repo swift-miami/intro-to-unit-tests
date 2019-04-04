@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Emails-->
+        <!--Table View Controller-->
         <scene sceneID="RvF-aw-aup">
             <objects>
                 <tableViewController id="tum-HM-vsr" customClass="TableViewController" customModule="EmailListV5" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                             <outlet property="delegate" destination="tum-HM-vsr" id="RX9-FS-yhp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Emails" id="FXn-ML-knp"/>
+                    <navigationItem key="navigationItem" id="FXn-ML-knp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbf-If-Fam" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
