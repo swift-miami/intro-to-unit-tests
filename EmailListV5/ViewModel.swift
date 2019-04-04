@@ -39,8 +39,16 @@ class ViewModel: ViewModelType {
     fileprivate var filteredEmails = [Email]()
     fileprivate var filteredQuery = ""
 
+    fileprivate let apiManager = APIManager()
+
     init(emails: [Email] = []) {
         self.allEmails = emails
+        apiManager.loadEmails { emails, error in
+            for email in emails ?? [] {
+                self.allEmails.append(email)
+                self.observer?.addedEmail(at: self.allEmails.count - 1)
+            }
+        }
     }
 
     // Inputs
