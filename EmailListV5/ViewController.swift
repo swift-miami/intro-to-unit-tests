@@ -66,6 +66,12 @@ class TableViewController: UITableViewController {
         viewModel.input.selectedEmail(at: indexPath.row)
     }
 
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel.input.deleteEmail(at: indexPath.row)
+        }
+    }
+
 }
 
 extension TableViewController: UISearchResultsUpdating {
@@ -89,6 +95,12 @@ extension TableViewController: ViewModelObserver {
     func updatedEmail(at index: Int) {
         tableView.beginUpdates()
         tableView.reloadRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
+        tableView.endUpdates()
+    }
+
+    func deletedEmail(at index: Int) {
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         tableView.endUpdates()
     }
 

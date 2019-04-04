@@ -1,5 +1,6 @@
 protocol ViewModelInput {
     func selectedEmail(at index: Int)
+    func deleteEmail(at index: Int)
     func filter(_ queryString: String)
 }
 
@@ -10,6 +11,7 @@ protocol ViewModelOutput {
 protocol ViewModelObserver {
     func addedEmail(at index: Int)
     func updatedEmail(at index: Int)
+    func deletedEmail(at index: Int)
     func filterUpdated()
 }
 
@@ -20,6 +22,7 @@ protocol ViewModelType: ViewModelInput, ViewModelOutput {
 }
 
 class ViewModel: ViewModelType {
+
     var input: ViewModelInput { return self }
     var output: ViewModelOutput { return self }
     var observer: ViewModelObserver? // delegate
@@ -32,10 +35,8 @@ class ViewModel: ViewModelType {
         }
     }
     
-    fileprivate var filteredEmails = [Email]()
-
     fileprivate var allEmails: [Email]
-    
+    fileprivate var filteredEmails = [Email]()
     fileprivate var filteredQuery = ""
 
     init(emails: [Email] = []) {
@@ -50,12 +51,15 @@ class ViewModel: ViewModelType {
             return
         }
     }
+
+    func deleteEmail(at index: Int) {
+        allEmails.remove(at: index)
+        observer?.deletedEmail(at: index)
+    }
     
     func filter(_ queryString: String) {
         filteredEmails = allEmails.filter({$0.subject.contains(queryString)})
-        
         filteredQuery = queryString
-        
         observer?.filterUpdated()
     }
 }
