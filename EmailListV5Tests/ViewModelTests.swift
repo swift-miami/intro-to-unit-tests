@@ -128,7 +128,7 @@ extension ViewModelTests {
 // MARK: - Deleting Filtered Emails
 extension ViewModelTests {
 
-    func testDeletingAnEmailWhileFilteredDeletesTheCorrectEmail() {
+    func testDeletingAnEmailWhileFilteredDeletesTheFilteredEmail() {
         // setup
         let vm = ViewModel(emails: [
             Email(subject: "Welcome", isRead: false),
@@ -144,6 +144,25 @@ extension ViewModelTests {
 
         // assert
         XCTAssertEqual(vm.output.emails.count, 0)
+    }
+
+    func testDeletingAnEmailWhileFilteredDeletesTheMainEmail() {
+        // setup
+        let vm = ViewModel(emails: [
+            Email(subject: "Welcome", isRead: false),
+            Email(subject: "to", isRead: false),
+            Email(subject: "Swift", isRead: false),
+            Email(subject: "Miami", isRead: false)
+            ]
+        )
+
+        // act
+        vm.input.filter("Swift")
+        vm.input.deleteEmail(at: 0)
+        vm.input.filter("")
+
+        // assert
+        XCTAssertEqual(vm.output.emails.count, 3)
     }
 
 }

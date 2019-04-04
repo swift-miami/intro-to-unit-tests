@@ -51,6 +51,10 @@ class ViewModel: ViewModelType {
         }
     }
 
+    func applyFilter() {
+        filteredEmails = allEmails.filter({$0.subject.contains(filteredQuery)})
+    }
+
     // Inputs
     func selectedEmail(at index: Int) {
         guard emails[index].isRead == true else {
@@ -61,13 +65,24 @@ class ViewModel: ViewModelType {
     }
 
     func deleteEmail(at index: Int) {
-        allEmails.remove(at: index)
+        let deletedEmail = emails[0]
+        let deletedIndex: Int
+        if filteredQuery.isEmpty {
+            deletedIndex = index
+        }
+        else {
+            deletedIndex = allEmails.firstIndex { (email) -> Bool in
+                deletedEmail.subject == email.subject
+            }!
+        }
+        allEmails.remove(at: deletedIndex)
+        applyFilter()
         observer?.deletedEmail(at: index)
     }
     
     func filter(_ queryString: String) {
-        filteredEmails = allEmails.filter({$0.subject.contains(queryString)})
         filteredQuery = queryString
+        applyFilter()
         observer?.filterUpdated()
     }
 }
