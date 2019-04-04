@@ -55,6 +55,77 @@ extension ViewModelTests {
     }
 }
 
+// MARK: - Deleting Emails
+extension ViewModelTests {
+
+    func testDeletingAnEmailDecrementsTheCount() {
+        // setup
+        let vm = ViewModel(emails: [
+            Email(subject: "Subject", isRead: false)
+            ]
+        )
+
+        // act
+        vm.input.deleteEmail(at: 0)
+
+        // assert
+        XCTAssertEqual(vm.output.emails.count, 0)
+    }
+
+    func testDeletingAnEmailCallsTheObserver() {
+        // setup
+        let vm = ViewModel(emails: [
+            Email(subject: "Subject", isRead: false)
+            ]
+        )
+        vm.observer = observer
+
+        // act
+        vm.input.deleteEmail(at: 0)
+
+        // assert
+        wait(for: [observer.deletedEmailExpectation], timeout: 0.2)
+    }
+
+}
+
+// MARK: - Filtering Emails
+extension ViewModelTests {
+
+    func testFilteringEmailsReturnsTheCorrectResults() {
+        // setup
+        let vm = ViewModel(emails: [
+            Email(subject: "Welcome", isRead: false),
+            Email(subject: "to", isRead: false),
+            Email(subject: "Swift", isRead: false),
+            Email(subject: "Miami", isRead: false)
+            ]
+        )
+
+        // act
+        vm.input.filter("Swift")
+
+        // assert
+        XCTAssertEqual(vm.output.emails.count, 1)
+        let email = vm.output.emails[0]
+        XCTAssertEqual(email.subject, "Swift")
+    }
+
+    func testFilteringCallsTheObserver() {
+        // setup
+        let vm = ViewModel(emails: [])
+        vm.observer = observer
+
+        // act
+        vm.input.filter("Hello")
+
+        // assert
+        wait(for: [observer.filterUpdatedExpectation], timeout: 0.1)
+    }
+
+}
+
+
 // MARK: - ViewModelObserver
 fileprivate class Observer: ViewModelObserver {
 
