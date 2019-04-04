@@ -46,25 +46,11 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if isFiltering() {
-//            return filteredEmails.count
-//        }
-//        return emails.count
-        
-          return viewModel.output.emails.count
+        return viewModel.output.emails.count
     }
-    
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("hey")
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-        
-//        if isFiltering() {
-//            email = filteredEmails[indexPath.row]
-//        } else {
-//            email =  emails[indexPath.row]
-//        }
-        
         let email = viewModel.output.emails[indexPath.row]
         
         if email.isRead {
@@ -76,36 +62,20 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
-        
         viewModel.input.selectedEmail(at: indexPath.row)
-        
-//        tableView.beginUpdates()
-//        tableView.reloadRows(at: [indexPath], with: .automatic)
-//        tableView.endUpdates()
     }
+
 }
 
 extension TableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-    func searchBarIsEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        viewModel.input.filter(searchText)
-    }
-    
-    func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty()
+        viewModel.input.filter(searchController.searchBar.text!)
     }
 }
 
 extension TableViewController: ViewModelObserver {
+
     func filterUpdated() {
         tableView.reloadData()
     }
@@ -121,4 +91,5 @@ extension TableViewController: ViewModelObserver {
         tableView.reloadRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
         tableView.endUpdates()
     }
+
 }
