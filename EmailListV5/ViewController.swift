@@ -10,32 +10,35 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    var emails = [Email(subject: "Hello", isRead: false),
-                  Email(subject: "URGENT: Please advise on how to proceed", isRead: false),
-                  Email(subject: "Dwight from the office: Following up", isRead: false),
-                  Email(subject: "CONGRATULATIONS, YOU'VE WON!", isRead: false),
-                  Email(subject: "Gutiérrez: Following up", isRead: false),
-                  Email(subject: "MTV Presents: Top 10 worst Rappers of 2019 (So Far)", isRead: false),
-                  Email(subject: "Groupon", isRead: false),
-                  Email(subject: "Hello, Friend", isRead: false)]
-
-    var filteredEmails = [Email]()
-    
     let searchController = UISearchController(searchResultsController: nil)
+    
+    var viewModel: ViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpTableView()
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search by Subject"
+        
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         
+        viewModel = ViewModel(emails: [Email(subject: "Hello", isRead: false),
+                                       Email(subject: "URGENT: Please advise on how to proceed", isRead: false),
+                                       Email(subject: "Dwight from the office: Following up", isRead: false),
+                                       Email(subject: "CONGRATULATIONS, YOU'VE WON!", isRead: false),
+                                       Email(subject: "Gutiérrez: Following up", isRead: false),
+                                       Email(subject: "MTV Presents: Top 10 worst Rappers of 2019 (So Far)", isRead: false),
+                                       Email(subject: "Groupon", isRead: false),
+                                       Email(subject: "Hello, Friend", isRead: false)])
         
+        viewModel.observer = self
     }
 
     func setUpTableView() {
@@ -43,10 +46,12 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering() {
-            return filteredEmails.count
-        }
-        return emails.count
+//        if isFiltering() {
+//            return filteredEmails.count
+//        }
+//        return emails.count
+        
+          return viewModel.output.emails.count
     }
     
     
@@ -54,12 +59,13 @@ class TableViewController: UITableViewController {
         print("hey")
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         
-        var email: Email
-        if isFiltering() {
-            email = filteredEmails[indexPath.row]
-        } else {
-            email =  emails[indexPath.row]
-        }
+//        if isFiltering() {
+//            email = filteredEmails[indexPath.row]
+//        } else {
+//            email =  emails[indexPath.row]
+//        }
+        
+        let email = viewModel.output.emails[indexPath.row]
         
         if email.isRead {
             cell.label.font = UIFont.italicSystemFont(ofSize: 12)
@@ -71,10 +77,13 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        emails[indexPath.row].isRead.toggle()
-        tableView.beginUpdates()
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-        tableView.endUpdates()
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        viewModel.input.selectedEmail(at: indexPath.row)
+        
+//        tableView.beginUpdates()
+//        tableView.reloadRows(at: [indexPath], with: .automatic)
+//        tableView.endUpdates()
     }
 }
 
@@ -88,11 +97,7 @@ extension TableViewController: UISearchResultsUpdating {
     }
 
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredEmails = emails.filter({( cellData : Email) -> Bool in
-            return cellData.subject.lowercased().contains(searchText.lowercased())
-        })
-        
-        tableView.reloadData()
+        viewModel.input.filter(searchText)
     }
     
     func isFiltering() -> Bool {
@@ -100,3 +105,20 @@ extension TableViewController: UISearchResultsUpdating {
     }
 }
 
+extension TableViewController: ViewModelObserver {
+    func filterUpdated() {
+        tableView.reloadData()
+    }
+    
+    func addedEmail(at index: Int) {
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
+        tableView.endUpdates()
+    }
+    
+    func updatedEmail(at index: Int) {
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [IndexPath(item: index, section: 0)], with: .automatic)
+        tableView.endUpdates()
+    }
+}

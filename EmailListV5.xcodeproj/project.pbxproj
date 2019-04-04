@@ -86,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				CE7A20942253FC5000F6DCB4 /* ViewController.swift */,
+				D30874752256833700C821F7 /* ViewModel.swift */,
 				CE7A20922253FC5000F6DCB4 /* AppDelegate.swift */,
 				CE7A20962253FC5000F6DCB4 /* Main.storyboard */,
 				CE7A20992253FC5800F6DCB4 /* Assets.xcassets */,
@@ -94,7 +95,6 @@
 				CE7A209B2253FC5800F6DCB4 /* LaunchScreen.storyboard */,
 				CE7A209E2253FC5800F6DCB4 /* Info.plist */,
 				D30874732256830900C821F7 /* Email.swift */,
-				D30874752256833700C821F7 /* ViewModel.swift */,
 			);
 			path = EmailListV5;
 			sourceTree = "<group>";
